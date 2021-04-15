@@ -1,48 +1,28 @@
-const express = require("express")
-const users = express.Router()
-const cors = require("cors")
-const jwt = require("jsonwebtoken")
-const bcrypt = require("bcrypt")
+// Those are our users routes.
 
-const Users = require("../models/Users")
-users.use(cors())
+const express = require('express');
+const router = express.Router();
 
-process.env.SECRET_KEY = 'secret'
+// Register route
+// req - request, res - response
+router.post('/register', (req, res, next) => {
+  res.send('REGISTER');
+});
 
-// REGISTER
-users.post('/register', (req,res) => {
-  const userData = {
-    email: req.body.email,
-    password: req.body.password,
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-    university: req.body.university,
-    role: req.body.university
-  }
+// Authenticate route
+router.post('/authenticate', (req, res, next) => {
+  res.send('AUTHENTICATE');
+});
 
-  Users.findOne({
-    where: {
-      email:req.body.email
-    }
-  })
-    .then(users => {
-      if (!users) {
-        const hash = bcrypt.hashSync(userData.password, 10)
-        userData.password = hash
-        Users.create(userData)
-          .then(users => {
-            let token = jwt.sign(users.dataValues, process.env.SECRET_KEY,{
-                expiresIn: 1440
-            })
-            res.json({token: token})
-          })
-          .catch(err => {
-            res.send('error' + err)
-          })
-      }
-    })
-})
+// Profile route
+router.get('/profile', (req, res, next) => {
+  res.send('PROFILE');
+});
 
-// 
+// Validate route
+router.get('/validate', (req, res, next) => {
+  res.send('VALIDATE');
+});
 
-module.exports = users
+// Exports the router.
+module.exports = router;

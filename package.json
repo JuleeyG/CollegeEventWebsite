@@ -1,23 +1,33 @@
 {
-  "name": "college_event_app",
+  "name": "collegeeventweb",
   "version": "1.0.0",
-  "description": "College event app",
-  "main": "server.js",
+  "description": "M*EAN stack web event application",
+  "main": "app.js",
   "scripts": {
-    "dev": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "bcrypt": "*",
+    "bcryptjs": "*",
     "body-parser": "*",
     "cors": "*",
     "express": "*",
     "jsonwebtoken": "*",
-    "mysql": "*",
-    "mysql2": "*",
-    "nodemod": "*",
-    "sequelize": "*"
+    "mysql": "^2.18.1",
+    "passport": "*",
+    "passport-jwt": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JuleeyG/CollegeEventWebsite.git"
+  },
+  "author": "Artem Ivanov, Juleeyah Wright",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JuleeyG/CollegeEventWebsite/issues"
+  },
+  "homepage": "https://github.com/JuleeyG/CollegeEventWebsite#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }
