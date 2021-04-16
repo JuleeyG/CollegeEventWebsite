@@ -1,7 +1,16 @@
-module.exports = {
+const { Sequelize } = require('sequelize');
+
+module.exports = new Sequelize('UserEventDB', 'root', '', {
   host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'UserEventDB',
-  port: '3308'
-}
+  dialect: 'mysql',
+  operatorAliases: false,
+  define: { timestamps: false},
+  port: '3308',
+
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
+  },
+});

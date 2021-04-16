@@ -1,28 +1,40 @@
-// Those are our users routes.
-
 const express = require('express');
 const router = express.Router();
+const db = require('../config/database');
+const User = require('../models/User');
 
-// Register route
-// req - request, res - response
-router.post('/register', (req, res, next) => {
-  res.send('REGISTER');
+// Get User list
+router.get('/', (req, res) =>
+  User.findAll()
+    .then(users =>{
+      console.log(users);
+      res.sendStatus(200);
+    })
+    .catch(err => console.log(err)));
+
+// Add a user
+router.get('/add', (req,res) =>{
+  const data = {
+    email: 'test2@gmail.com',
+    password: 'lalala123',
+    firstname: 'Chris',
+    lastname: 'Folk',
+    university: 'MIT',
+    role: 'student'
+  }
+
+  let {uid, email, password, firstname, lastname, university, role} = data;
+
+  // Insert into table
+  User.create({
+    email,
+    password,
+    firstname,
+    lastname,
+    university,
+    role
+  })
+  .then(user => res.redirect('/users'))
+  .catch(err => console.log(err));
 });
-
-// Authenticate route
-router.post('/authenticate', (req, res, next) => {
-  res.send('AUTHENTICATE');
-});
-
-// Profile route
-router.get('/profile', (req, res, next) => {
-  res.send('PROFILE');
-});
-
-// Validate route
-router.get('/validate', (req, res, next) => {
-  res.send('VALIDATE');
-});
-
-// Exports the router.
 module.exports = router;

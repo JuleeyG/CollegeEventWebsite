@@ -12,10 +12,14 @@
     "body-parser": "*",
     "cors": "*",
     "express": "*",
+    "express-handlebars": "^5.3.0",
     "jsonwebtoken": "*",
+    "md5": "*",
     "mysql": "^2.18.1",
+    "mysql2": "^2.2.5",
     "passport": "*",
-    "passport-jwt": "*"
+    "passport-jwt": "*",
+    "sequelize": "^6.6.2"
   },
   "repository": {
     "type": "git",

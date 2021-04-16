@@ -3,45 +3,38 @@
 
 // Modules
 const express = require('express');
+const exphbs = require('express-handlebars');
 const path = require('path');
 // Parses incoming request body, when we reciving a form we can grab the data.
 const bodyParser = require('body-parser');
 // Middleware that allows to make an API request form different domain name.
-const cors = require('cors');
-const passport = require('passport');
-const mysql = require('mysql');
-const config = require('./config/database')
+// const cors = require('cors');
+// const passport = require('passport');
+const db = require('./config/database')
+
+// Test DB
+db.authenticate()
+  .then(() => console.log('Database connected...'))
+  .catch(err => console.log('Error ' + err))
 
 const app = express();
-const users = require('./routes/users');
 
-var connectionDB = mysql.createConnection(config);
+// handlebars
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.set('view engine', 'handlebars');
 
-// On Connction or On Error
-connectionDB.connect(function(error) {
-  if (!!error){
-    console.log('Error ' + error);
-  } else {
-    console.log('Connected');
-  }
-});
+// User routes
+app.use('/users', require('./routes/users'));
 
-/*
-app.get('/', function(req, res) {
-  connection.query("SELECT * FROM users", function(error, rows, fields) {
-    if (!!error){
-      console.log('Error in the query');
-    } else {
-      console.log('Successful query \n');
-      console.log(rows);
-    }
-  })
-});
-*/
+app.get('/', (req, res) => res.send('INDEX'));
 
 // Port number
-const port = 2425;
+const PORT = process.env.PORT || 5001;
 
+app.listen(PORT, console.log('Server started on port ' + PORT));
+
+
+/*
 // CORS Middleware
 app.use(cors());
 
@@ -64,3 +57,4 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log('Server started on port ' + port);
 })
+*/

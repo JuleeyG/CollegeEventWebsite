@@ -1,5 +1,30 @@
-const mysql = require('mysql');
-const bcrypt = require('bcryptjs');
-const config = require('../config/database');
+const { Sequelize } = require('sequelize');
+const db = require('../config/database');
 
-// User Schema
+const User = db.define('user', {
+  uid: {
+    type: Sequelize.INTEGER,
+    primaryKey: true
+  },
+  email: {
+    type: Sequelize.STRING,
+    //primaryKey: true
+  },
+  password: {
+    type: Sequelize.STRING
+  },
+  firstname: {
+    type: Sequelize.STRING
+  },
+  lastname: {
+    type: Sequelize.STRING
+  },
+  university: {
+    type: Sequelize.STRING
+  },
+  role: {
+    type: Sequelize.STRING
+  },
+})
+
+module.exports = User;
