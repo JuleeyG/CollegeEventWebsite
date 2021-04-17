@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 10, 2021 at 06:27 AM
+-- Generation Time: Apr 17, 2021 at 08:22 PM
 -- Server version: 8.0.12
 -- PHP Version: 7.3.0
 
@@ -33,7 +33,7 @@ CREATE TABLE `comments` (
   `text` longtext NOT NULL,
   `rating` int(8) NOT NULL,
   `time` timestamp NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -50,7 +50,7 @@ CREATE TABLE `events` (
   `category` int(8) NOT NULL,
   `event_type` varchar(45) NOT NULL,
   `description` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -63,7 +63,7 @@ CREATE TABLE `location` (
   `name` int(45) NOT NULL,
   `latitude` decimal(10,0) NOT NULL,
   `longitude` decimal(10,0) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -76,7 +76,20 @@ CREATE TABLE `rsos` (
   `rso_id` int(11) NOT NULL,
   `email_domain` int(11) NOT NULL,
   `approval` varchar(8) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `university_profile`
+--
+
+CREATE TABLE `university_profile` (
+  `uid` int(11) NOT NULL,
+  `name` varchar(25) NOT NULL,
+  `location` geometry NOT NULL,
+  `description` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -92,14 +105,14 @@ CREATE TABLE `users` (
   `lastname` varchar(30) NOT NULL,
   `university` varchar(30) NOT NULL,
   `role` varchar(8) NOT NULL DEFAULT 'student'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`uid`, `email`, `password`, `firstname`, `lastname`, `university`, `role`) VALUES
-(1111111, 'johndoe@gmail.com', 'johndoe', 'john', 'doe', 'University of Central Florida', 'student');
+(1, 'johndoe@gmail.com', 'johndoe', 'john', 'doe', 'University of Central Florida', 'student');
 
 --
 -- Indexes for dumped tables
@@ -123,6 +136,12 @@ ALTER TABLE `location`
 --
 ALTER TABLE `rsos`
   ADD PRIMARY KEY (`rso_id`);
+
+--
+-- Indexes for table `university_profile`
+--
+ALTER TABLE `university_profile`
+  ADD PRIMARY KEY (`uid`);
 
 --
 -- Indexes for table `users`
@@ -152,6 +171,12 @@ ALTER TABLE `location`
 --
 ALTER TABLE `rsos`
   MODIFY `rso_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `university_profile`
+--
+ALTER TABLE `university_profile`
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
