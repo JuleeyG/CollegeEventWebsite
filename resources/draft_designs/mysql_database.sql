@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2021 at 04:31 AM
+-- Generation Time: Apr 20, 2021 at 01:02 AM
 -- Server version: 8.0.12
 -- PHP Version: 7.3.0
 
@@ -85,6 +85,7 @@ CREATE TABLE `rsos` (
 
 CREATE TABLE `university_profile` (
   `uid` int(11) NOT NULL,
+  `said` int(11) NOT NULL,
   `name` varchar(25) NOT NULL,
   `location` geometry NOT NULL,
   `description` longtext NOT NULL
@@ -140,7 +141,8 @@ ALTER TABLE `rsos`
 -- Indexes for table `university_profile`
 --
 ALTER TABLE `university_profile`
-  ADD PRIMARY KEY (`uid`);
+  ADD PRIMARY KEY (`uid`),
+  ADD UNIQUE KEY `said` (`said`);
 
 --
 -- Indexes for table `users`
@@ -182,6 +184,16 @@ ALTER TABLE `university_profile`
 --
 ALTER TABLE `users`
   MODIFY `uid` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1111112;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `location`
+--
+ALTER TABLE `location`
+  ADD CONSTRAINT `location_ibfk_1` FOREIGN KEY (`id`) REFERENCES `events` (`eid`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
