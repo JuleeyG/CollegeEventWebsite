@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2021 at 08:22 PM
+-- Generation Time: Apr 19, 2021 at 04:31 AM
 -- Server version: 8.0.12
 -- PHP Version: 7.3.0
 
@@ -47,8 +47,7 @@ CREATE TABLE `events` (
   `email` varchar(255) NOT NULL,
   `phone` varchar(255) NOT NULL,
   `date` datetime NOT NULL,
-  `category` int(8) NOT NULL,
-  `event_type` varchar(45) NOT NULL,
+  `category` varchar(25) NOT NULL,
   `description` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -74,7 +73,7 @@ CREATE TABLE `location` (
 CREATE TABLE `rsos` (
   `admin` varchar(45) NOT NULL,
   `rso_id` int(11) NOT NULL,
-  `email_domain` int(11) NOT NULL,
+  `email_domain` varchar(25) NOT NULL,
   `approval` varchar(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
